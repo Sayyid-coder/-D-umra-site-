@@ -75,20 +75,16 @@ async def process_about(callback: types.CallbackQuery):
     await callback.message.answer("ℹ️ Система защиты приложений по HWID и подпискам.")
     await callback.answer()
 
-# Корневой маршрут для проверки Render (обязательно!)
+# Корневой маршрут для Render
 @app.get("/")
 async def root():
     return {"status": "active", "bot": "running"}
 
-# Запуск поллинга бота при старте FastAPI
+# Безопасный запуск поллинга в фоне FastAPI
 @app.on_event("startup")
 async def startup_event():
-    # Сбрасываем зависшие вебхуки, чтобы заработал Long Polling
-    await bot.delete_webhook(drop_pending_updates=True)
-    asyncio.create_task(dp.start_polling(bot))
+    asyncio.create_task(dp.start_polling(bot, drop_pending_updates=True))
     logging.info("Бот успешно запущен в фоне FastAPI!")
-
-
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
