@@ -86,6 +86,7 @@ async def startup_event():
     asyncio.create_task(dp.start_polling(bot))
     logging.info("Бот успешно запущен в фоне FastAPI!")
 
+
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
     uvicorn.run(app, host="0.0.0.0", port=port)
