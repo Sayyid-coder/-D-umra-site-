@@ -23,7 +23,7 @@ logging.basicConfig(
     format="%(asctime)s - %(levelname)s - %(message)s"
 )
 
-TOKEN = "9275762539:AAHaPhSUUm8JmYjJAK9ozuT-12CvFGTckLo"
+TOKEN = "9275762539:AAF7sO9DNU4pQrnn6bJmhSWEibnKBvKatlE"
 ADMIN_ID = 6570088926
 WEBHOOK_SECRET = "marketapp_secure_secret_token_9275"
 RENDER_URL = os.getenv("RENDER_EXTERNAL_URL", "").rstrip("/")
