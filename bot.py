@@ -83,8 +83,11 @@ async def root():
 # Запуск поллинга бота при старте FastAPI
 @app.on_event("startup")
 async def startup_event():
+    # Сбрасываем зависшие вебхуки, чтобы заработал Long Polling
+    await bot.delete_webhook(drop_pending_updates=True)
     asyncio.create_task(dp.start_polling(bot))
     logging.info("Бот успешно запущен в фоне FastAPI!")
+
 
 
 if __name__ == "__main__":
